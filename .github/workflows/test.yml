@@ -1,5 +1,6 @@
 name: Github action hello world
-on: 
+
+on:
   workflow_dispatch:
 
 jobs:
@@ -15,5 +16,11 @@ jobs:
       with:
         node-version: '22'
 
-    - name: Run hello.js
-      run: node hello.js
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+
+    - name: Run Playwright tests
+      run: npx playwright test
